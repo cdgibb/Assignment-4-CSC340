@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Animal</title>
+</head>
+<body>
+
+    <div class="card-body">
+        <span style="float:right"> <a href="/animals/all" class="btn btn-primary">Go back</a></span> <br>
+        <span style="float:right"> <a data-th-href="@{/animals/delete/{animalId}(animalId=${animal.animalId})}" class="btn btn-danger">Delete
+            Animal</a></span>
+        <p class="card-title" data-th-text=" 'ID: '+ ${animal.animalId}"></p>
+        <p class="card-text" data-th-text=" 'Name: '+${animal.name}"></p>
+        <p class="card-text" data-th-text=" 'Scientific Name: '+${animal.scientificName}"></p>
+        <p class="card-text" data-th-text=" 'Species: '+${animal.species}"></p>
+        <p class="card-text" data-th-text=" 'Habitat: '+${animal.habitat}"></p>
+        <p class="card-text" data-th-text=" 'Description: '+${animal.description}"></p>
+
+
+
+    </div>
+</div>
+    <button  class="btn btn-outline-primary" onclick="openForm()">Edit Animal</button>
+    <form id="update-animal" action="/animals/update" method="post" style="display:none">
+        <input type="number" id="animalId" name="animalId"  data-th-value="${animal.animalId}" readonly/>
+        <input type="text" id="name" name="name" data-th-value="${animal.name}"  placeholder="Name"/>
+        <input type="text" id="scientificName" name="scientificName" data-th-value="${animal.scientificName}" placeholder="Scientific Name"/>
+        <input type="text" id="species" name="species" data-th-value="${animal.species}"  placeholder="Species"/>
+        <input type="text" id="habitat" name="habitat" data-th-value="${animal.habitat}"  placeholder="Habitat"/>
+        <input type="text" id="description" name="description" data-th-value="${animal.description}"  placeholder="Description"/>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="reset" class="btn btn-danger" onclick="closeForm()">Cancel</button>
+
+    </form>
+    <script>
+        function openForm() {
+          document.getElementById("update-animal").style.display = "block";
+        }
+
+        function closeForm() {
+          document.getElementById("update-animal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
